@@ -1,2 +1,2 @@
 # PhyongV2
-First game I "completed" using GODOT 3.x
+"Pong" replica using GODOT 3.x. Uses raytracing for the second player AI and kinematic2d physics for the paddle / ball.
