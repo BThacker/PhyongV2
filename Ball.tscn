@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Ball.gd" type="Script" id=1]
+[ext_resource path="res://balls/sphere-22.png" type="Texture" id=2]
+[ext_resource path="res://sounds/8bit_beep.ogg" type="AudioStream" id=3]
+
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Ball" type="KinematicBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.731712, 0.178316 )
+scale = Vector2( 0.0764921, 0.0764921 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 270, 260 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.138306, -0.0669943 )
+shape = SubResource( 1 )
+
+[node name="contact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
