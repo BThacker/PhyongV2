@@ -13,7 +13,7 @@ var starting_position = Vector2()
 func _ready():
 	starting_position = position
 	delay_response()
-	
+
 func _process(delta):
 	if target:
 		locate_ball()
@@ -28,7 +28,7 @@ func _physics_process(delta):
 func delay_response():
 	_timer = Timer.new()
 	add_child(_timer)
-	
+
 	_timer.connect("timeout",self, "_on_Timer_timeout")
 	# how often we want the AI to respond to information
 	_timer.set_wait_time(.15)
@@ -44,7 +44,8 @@ func _on_Timer_timeout():
 		canMove = true
 		print(canMove)
 		return
-	
+
+# based on what we see from the raytrace, we move up or down
 func decide_movement():
 	if !idle and canMove:
 		velocity = Vector2()

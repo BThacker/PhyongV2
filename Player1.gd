@@ -3,6 +3,10 @@ extends KinematicBody2D
 var speed = 400
 
 var velocity = Vector2()
+# we rotate paddle slightly based on up or down movements
+# this allows the ball to react similar to the original pong
+# due to slightly altered impact angles using the kinematic2d
+# "bounce" method.
 
 func get_input():
 	# add these actions in Project Settings -> Input Map

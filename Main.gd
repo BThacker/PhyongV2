@@ -1,4 +1,5 @@
 extends Node2D
+# main game logic will be stored here
 export (PackedScene) var Ball
 export (PackedScene) var BallRig
 var ballPosition
@@ -8,7 +9,9 @@ var score2 = 0
 var winner
 
 func _ready():
+	# generate new seeds for debug purposes
 	randomize()
+	# check current screen size, not sure if necessary
 	ballPosition = get_viewport_rect().size / 2
 
 # hackery to make the ball start randomly
@@ -16,17 +19,18 @@ func randomize_ball_direction(directions):
 	return directions[randi() % directions.size()]
 
 func add_ball():
+	# as ball is a packed scene, we will instance the object in the world
 	var b = Ball.instance()
 	var direction1 = rand_range(140, 220)
 	var direction2 = rand_range(0, 40)
 	var direction3 = rand_range(320, 360)
 	direction = randomize_ball_direction([direction1, direction2, direction3])
 	b.start(ballPosition, direction)
-#b.start(ballPosition)
 	add_child(b)
 	$HUD.update_alpha_player1(.1)
 	$HUD.update_alpha_player2(.1)
 
+# thinking about adding more complex logic here
 func start_action():
 	add_ball()
 
@@ -34,7 +38,7 @@ func _on_HUD_start_game():
 	new_game()
 	$HUD.update_score_player1(0)
 	$HUD.update_score_player2(0) # Replace with function body.
-	
+
 func new_game():
 	score1 = 0
 	score2 = 0
