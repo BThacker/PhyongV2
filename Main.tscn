@@ -1,120 +1,38 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
-[ext_resource path="res://images/black_background.png" type="Texture" id=3]
-[ext_resource path="res://Player1.gd" type="Script" id=4]
-[ext_resource path="res://images/sprites.png" type="Texture" id=5]
-[ext_resource path="res://Player2_AI.gd" type="Script" id=6]
-[ext_resource path="res://player2ScoreArea.gd" type="Script" id=7]
-[ext_resource path="res://player1ScoreArea.gd" type="Script" id=8]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=9]
-[ext_resource path="res://ai_decision.gd" type="Script" id=10]
+[ext_resource path="res://Player1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player2_AI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://images/black_background.png" type="Texture" id=5]
+[ext_resource path="res://player2ScoreArea.gd" type="Script" id=6]
+[ext_resource path="res://player1ScoreArea.gd" type="Script" id=7]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends RigidBody2D
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-func start(pos):
-	position = pos
-	apply_impulse(Vector2(0, 0), Vector2(500 ,0))
-	bounce = 1
-	friction = .5
-"
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 9.93282
-
-[sub_resource type="PackedScene" id=3]
-_bundled = {
-"conn_count": 0,
-"conns": PoolIntArray(  ),
-"editable_instances": [  ],
-"names": PoolStringArray( "RigidBody2D", "RigidBody2D", "gravity_scale", "linear_damp", "angular_damp", "script", "Sprite", "Sprite", "position", "scale", "texture", "CollisionShape2D", "CollisionShape2D", "position", "shape" ),
-"node_count": 3,
-"node_paths": [ NodePath("."), NodePath(".") ],
-"nodes": PoolIntArray( -1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0, 1073741824, 0, 7, 6, -1, 3, 8, 4, 9, 5, 10, 6, 0, 1073741825, 0, 12, 11, -1, 2, 13, 7, 14, 8, 0 ),
-"variants": [ 0.0, 0.0, 0.0, SubResource( 1 ), Vector2( 0.104245, 0.0311446 ), Vector2( 0.0719935, 0.0719935 ), null, Vector2( 0.0673943, 0.0809946 ), SubResource( 2 ) ],
-"version": 2
-}
-
-[sub_resource type="CapsuleShape2D" id=4]
-radius = 0.967962
-height = 19.4489
-
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 4.10303
-height = 96.7466
-
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 811.025, 1.31851 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 812.612, 1.34943 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 316.768 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 316.753 )
-
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 437.228, 305.142 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
 Ball = ExtResource( 2 )
-BallRig = SubResource( 3 )
+Player1 = ExtResource( 3 )
+Player2_AI = ExtResource( 4 )
 
 [node name="Background" type="Area2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Background"]
 position = Vector2( 753.109, 445.567 )
 scale = Vector2( 2.95789, 2.95789 )
-texture = ExtResource( 3 )
-
-[node name="Player1" type="KinematicBody2D" parent="."]
-position = Vector2( 85.4835, 351.853 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Player1"]
 texture = ExtResource( 5 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 50, 150 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
-position = Vector2( -0.384995, 0.205902 )
-scale = Vector2( 5, 5 )
-shape = SubResource( 4 )
-
-[node name="Player2_AI" type="KinematicBody2D" parent="."]
-position = Vector2( 1405.97, 349.87 )
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Player2_AI"]
-position = Vector2( 1.57424, 1.65776 )
-texture = ExtResource( 5 )
-region_enabled = true
-region_rect = Rect2( 50, 10, 50, 130 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2_AI"]
-position = Vector2( 1.13196, 1.88675 )
-shape = SubResource( 5 )
 
 [node name="top_boundary" type="StaticBody2D" parent="."]
 position = Vector2( 763.672, 27.5973 )
@@ -123,7 +41,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="top_boundary"]
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="top_boundary"]
 color = Color( 1, 0, 0, 1 )
@@ -133,7 +51,7 @@ polygon = PoolVector2Array( -1000, -1, 1000, -1, 1000, 1, -1000, 1 )
 position = Vector2( 753.128, 681.414 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bot_boundary"]
-shape = SubResource( 7 )
+shape = SubResource( 2 )
 
 [node name="Polygon2D" type="Polygon2D" parent="bot_boundary"]
 color = Color( 1, 0, 0, 1 )
@@ -141,35 +59,29 @@ polygon = PoolVector2Array( -1000, -1, 1000, -1, 1000, 1, -1000, 1 )
 
 [node name="player2ScoreArea" type="Area2D" parent="."]
 position = Vector2( 32.6578, 407.056 )
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player2ScoreArea"]
 position = Vector2( 16.7192, -51.1122 )
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 
 [node name="player1ScoreArea" type="Area2D" parent="."]
 position = Vector2( 1315.3, 278.361 )
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player1ScoreArea"]
 position = Vector2( 121.495, 73.672 )
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
-[node name="HUD" parent="." instance=ExtResource( 9 )]
+[node name="HUD" parent="." instance=ExtResource( 8 )]
 
-[node name="ai_decision" type="Area2D" parent="."]
-position = Vector2( 957.907, 352.238 )
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="player1POS" type="Area2D" parent="."]
+position = Vector2( 73, 356 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ai_decision"]
-shape = SubResource( 10 )
+[node name="player2POS" type="Area2D" parent="."]
+position = Vector2( 1394, 371 )
 [connection signal="body_entered" from="player2ScoreArea" to="player2ScoreArea" method="_on_player2ScoreArea_body_entered"]
 [connection signal="player2scored" from="player2ScoreArea" to="." method="_on_player2ScoreArea_player2scored"]
 [connection signal="body_entered" from="player1ScoreArea" to="player1ScoreArea" method="_on_player1ScoreArea_body_entered"]
 [connection signal="player1scored" from="player1ScoreArea" to="." method="_on_player1ScoreArea_player1scored"]
-[connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
-[connection signal="body_entered" from="ai_decision" to="ai_decision" method="_on_ai_decision_body_entered"]
-[connection signal="body_exited" from="ai_decision" to="ai_decision" method="_on_ai_decision_body_exited"]
+[connection signal="start_game_ai" from="HUD" to="." method="_on_HUD_start_game_ai"]

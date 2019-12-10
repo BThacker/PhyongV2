@@ -1,6 +1,13 @@
 extends CanvasLayer
 
-signal start_game
+signal start_game_ai
+signal start_game_2p
+# to implement
+signal start_game_multiplayer
+
+func _ready():
+	update_alpha_player1(0)
+	update_alpha_player2(0)
 
 func show_message(text):
 	$MessageLabel.text = text
@@ -15,7 +22,7 @@ func show_game_over(winnerName):
 	update_score_player1(0)
 	update_score_player2(0)
 	yield(get_tree().create_timer(3), 'timeout')
-	$StartButton.show()
+	$StartButton_AI.show()
 
 func _on_MessageTimer_timeout():
 	$MessageLabel.hide()
@@ -32,8 +39,10 @@ func update_score_player1(score):
 func update_score_player2(score):
 	$ScoreLabel2.text = str(score)
 
-func _on_StartButton_button_up():
-	$StartButton.hide()
+func _on_StartButton_AI_button_up():
+	$StartButton_AI.hide()
 	$MessageLabel.hide()
-	emit_signal("start_game")
+	emit_signal("start_game_ai")
 	print("start game")
+	update_alpha_player1(.1)
+	update_alpha_player2(.1)

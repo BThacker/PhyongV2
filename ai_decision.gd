@@ -17,8 +17,8 @@ func _ready():
 func _on_ai_decision_body_entered(body):
 	if target:
 		return
-	get_node("../Player2_AI").target = body
+	get_parent().target = body
 
 func _on_ai_decision_body_exited(body):
-	if body == get_node("../Player2_AI").target:
-		get_node("../Player2_AI").target = null
+	if body == get_parent().target:
+		get_parent().target = null

@@ -46,18 +46,18 @@ custom_fonts/font = ExtResource( 2 )
 text = "Phyong! "
 align = 1
 
-[node name="StartButton" type="Button" parent="."]
+[node name="StartButton_AI" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -95.0
 margin_top = -225.0
-margin_right = 95.0
-margin_bottom = -100.0
+margin_right = 103.0
+margin_bottom = -191.0
 shortcut = SubResource( 2 )
 text = "Start vs AI"
 
 [node name="MessageTimer" type="Timer" parent="."]
 wait_time = 5.0
-[connection signal="button_up" from="StartButton" to="." method="_on_StartButton_button_up"]
+[connection signal="button_up" from="StartButton_AI" to="." method="_on_StartButton_AI_button_up"]

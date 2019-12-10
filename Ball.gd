@@ -3,10 +3,13 @@ extends KinematicBody2D
 var speed = 800
 var velocity = Vector2()
 
-func start(pos, dir):
+func spawn(pos, dir):
 	position = pos
 	velocity = Vector2(speed, 0).rotated(deg2rad(dir))
 	rotation = velocity.angle()
+
+func delete():
+	queue_free()
 
 func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)

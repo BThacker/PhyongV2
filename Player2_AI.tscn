@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player2_AI.gd" type="Script" id=1]
+[ext_resource path="res://images/sprites.png" type="Texture" id=2]
+[ext_resource path="res://ai_decision.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.10303
+height = 96.7466
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 437.228, 941.11 )
+
+[node name="Player2_AI" type="KinematicBody2D"]
+position = Vector2( 1405.97, 349.87 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1.57424, 1.65776 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 50, 10, 50, 130 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.13196, 1.88675 )
+shape = SubResource( 1 )
+
+[node name="ai_decision" type="Area2D" parent="."]
+position = Vector2( -448.063, 2.36801 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ai_decision"]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="ai_decision" to="ai_decision" method="_on_ai_decision_body_entered"]
+[connection signal="body_exited" from="ai_decision" to="ai_decision" method="_on_ai_decision_body_exited"]

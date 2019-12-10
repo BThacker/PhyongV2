@@ -5,15 +5,19 @@ var laser_color = Color( 0.55, 0, 0, 1 )
 var target
 var ball_pos = Vector2()
 var velocity = Vector2()
-var idle = true
 var canMove = false
 var _timer = null
 var starting_position = Vector2()
 
 func _ready():
-	starting_position = position
 	delay_response()
 
+func spawn(spawn_position):
+	starting_position = spawn_position
+	position = spawn_position
+
+func delete():
+	queue_free()
 func _process(delta):
 	if target:
 		locate_ball()
@@ -38,16 +42,14 @@ func delay_response():
 func _on_Timer_timeout():
 	if canMove:
 		canMove = !canMove
-		print(canMove)
 		return
 	if !canMove:
 		canMove = true
-		print(canMove)
 		return
 
 # based on what we see from the raytrace, we move up or down
 func decide_movement():
-	if !idle and canMove:
+	if canMove:
 		velocity = Vector2()
 		if ball_pos.y > position.y:
 			velocity.y += 1
