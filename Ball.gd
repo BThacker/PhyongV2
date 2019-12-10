@@ -8,9 +8,6 @@ func spawn(pos, dir):
 	velocity = Vector2(speed, 0).rotated(deg2rad(dir))
 	rotation = velocity.angle()
 
-func delete():
-	queue_free()
-
 func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:

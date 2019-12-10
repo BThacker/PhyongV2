@@ -16,8 +16,6 @@ func spawn(spawn_position):
 	starting_position = spawn_position
 	position = spawn_position
 
-func delete():
-	queue_free()
 func _process(delta):
 	if target:
 		locate_ball()

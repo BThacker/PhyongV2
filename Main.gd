@@ -44,7 +44,7 @@ func ball(action):
 		$HUD.update_alpha_player2(.1)
 		current_ball = b
 	if action == gameEntity.destroy:
-		current_ball.delete()
+		current_ball.queue_free()
 
 func player_1(action):
 	var player1 = Player1.instance()
@@ -54,7 +54,7 @@ func player_1(action):
 		current_p1 = player1
 		print("Spawning Player 1")
 	if action == gameEntity.destroy:
-		current_p1.delete()
+		current_p1.queue_free()
 
 #func player_2(action):
 #	player2.spawn(p2_start_pos)
@@ -67,7 +67,7 @@ func ai_player_2(action):
 		print("spawning AI")
 		current_p2 = ai
 	if action == gameEntity.destroy:
-		current_p2.delete()
+		current_p2.queue_free()
 
 # listening for start calls
 func _on_HUD_start_game_ai():

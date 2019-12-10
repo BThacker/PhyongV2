@@ -10,9 +10,6 @@ var spawn_position = Vector2()
 func spawn(spawn_position):
 	position = spawn_position
 
-func delete():
-	queue_free()
-
 func get_input():
 	# add these actions in Project Settings -> Input Map
 	velocity = Vector2()
